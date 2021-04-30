@@ -12,11 +12,19 @@
 <div align=center>
 
   <a href="https://github.com/discordjs">
-    <img src="https://img.shields.io/badge/discord.js-v12.3.1-blue.svg?logo=npm" alt="shield.png">
+    <img src="https://img.shields.io/badge/discord.js-v12.3.1-blue.svg?logo=npm" alt="djsversion.png">
   </a>
 
-  <a href="https://github.com/TjWit/SmoothSharpBOT/blob/LICENSE">
-    <img src="https://img.shields.io/badge/license-APACHE%2-green" alt="shield.png">
+  <a href="https://github.com/TjWit/SmoothSharpBOT/blob/LICENSE.md">
+    <img src="https://img.shields.io/github/license/TjWit/SmoothSharpBOT" alt="license.png">
+  </a>
+  
+  <a href="shop.smoothbrains.xyz">
+  <img src="https://img.shields.io/github/issues/TjWit/SmoothSharpBOT" alt="issues.png"
+  </a>
+  
+  <a href="https://github.com/TjWit/SmoothSharpBOT">
+  <img src="https://img.shields.io/github/stars/TjWit/SmoothSharpBOT" alt="stars.png"
   </a>
 
 </div>
