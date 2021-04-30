@@ -16,7 +16,7 @@
   </a>
 
   <a href="https://github.com/TjWit/SmoothSharpBOT/blob/LICENSE">
-    <img src="https://img.shields.io/badge/license-GNU%20GPL%20v3-green" alt="shield.png">
+    <img src="https://img.shields.io/badge/license-APACHE%2.0-green" alt="shield.png">
   </a>
 
 </div>
