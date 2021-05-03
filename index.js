@@ -2,7 +2,7 @@ const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
 const { default: Collection } = require('@discordjs/collection');
-const db = require('quick.db') 
+const db = require('quick.db')
 const developers = ['756289468285190294', '376109069733199893', '806196848393191435', '257073333273624576', '768270409509634048']
 
 const client = new Discord.Client();
@@ -26,54 +26,54 @@ client.once('ready', () => {
 client.on("guildCreate", guild => {
 	console.log('SmoothSharp Setup!')
 	const channel = guild.channels.cache.find(channel => channel.type === 'text' && channel.permissionsFor(guild.me).has('SEND_MESSAGES'))
-    channel.send(
+	channel.send(
 		new Discord.MessageEmbed()
-		.setTitle('Thanks for inviting SmoothSharp!')
-		.setDescription(`The first thing that we need to do is run ${prefix}setup... That way we can create a channel nammed ***mod-logs*** so whenever you kick, ban, warn, and many other things, you will get messages in that server verifying that everything has been ran successfully.`)
-		.addField('Command To Run:', `${prefix}setup`)
-		.addField('What to do next', 'You want to put the bots roles above all the other roles, that way the bot is able to access all members.')
-		.setFooter(`Moderation by SmoothSharp`)
-		.setTimestamp()
-		.setColor("RANDOM")
+			.setTitle('Thanks for inviting SmoothSharp!')
+			.setDescription(`The first thing that we need to do is run ${prefix}setup... That way we can create a channel nammed ***mod-logs*** so whenever you kick, ban, warn, and many other things, you will get messages in that server verifying that everything has been ran successfully.`)
+			.addField('Command To Run:', `${prefix}setup`)
+			.addField('What to do next', 'You want to put the bots roles above all the other roles, that way the bot is able to access all members.')
+			.setFooter(`Moderation by SmoothSharp`)
+			.setTimestamp()
+			.setColor("RANDOM")
 	)
-  });
+});
 
 function status() {
-  
+
 	let status = [
-	  `smoothbrains.xyz | ${client.guilds.cache.size} guilds`,
-	  `${prefix}help`,
-	  `${client.guilds.cache.size} guilds | ${prefix}help`
+		`smoothbrains.xyz | ${client.guilds.cache.size} guilds`,
+		`${prefix}help`,
+		`${client.guilds.cache.size} guilds | ${prefix}help`
 	];
 
 	let statusR = Math.floor(Math.random() * status.length);
 
-	client.user.setActivity(status[statusR] , { 
-		type: "WATCHING" ,
-		status : "Online",
+	client.user.setActivity(status[statusR], {
+		type: "WATCHING",
+		status: "Online",
 		url: "https://smoothbrains.xyz"
-	  });
-	}
-  setInterval(status, 7000);
+	});
+}
+setInterval(status, 7000);
 
 client.on('ready', () => {
-    status();
+	status();
 });
 
 client.on('guildDelete', guild => {
-    status();
+	status();
 });
 
 client.on('guildCreate', guild => {
-  status();
+	status();
 });
 
-client.on('message', message => { 
-	if(message.channel.type === 'dm') return;
+client.on('message', message => {
+	if (message.channel.type === 'dm') return;
 
 
 	let psprefix = db.get(`prefix_${message.guild.id}`)
-	if(psprefix === null) psprefix = prefix
+	if (psprefix === null) psprefix = prefix
 
 	if (!message.content.startsWith(psprefix) || message.author.bot) return;
 
@@ -100,7 +100,7 @@ client.on('message', message => {
 		let reply = `**${message.author} you forgot to specify any arguments ❌**`;
 
 		if (command.usage) {
-			reply += `\nThe proper usage for this command would be: \`**${psprefix}${command.name}** **${command.usage}**\``;
+			reply += `\nThe proper usage for this command would be: \`${psprefix}${command.usage}\``;
 		}
 
 		return message.channel.send(reply);
@@ -108,9 +108,9 @@ client.on('message', message => {
 
 	const { cooldowns } = client;
 
-	if (cooldowns.has(command.name)) {
+	if (!cooldowns.has(command.name)) {
 		cooldowns.set(command.name, new Discord.Collection());
-	
+	}
 
 	const now = Date.now();
 	const timestamps = cooldowns.get(command.name);
@@ -121,13 +121,19 @@ client.on('message', message => {
 
 		if (now < expirationTime) {
 			const timeLeft = (expirationTime - now) / 1000;
-			return message.reply(`please wait **${timeLeft.toFixed(1)} more second(s)** before reusing the **\ ${command.name}\** command.`);
+			return message.reply(
+				new Discord.MessageEmbed()
+					.setTitle('⏳ Your on cooldown!')
+					.addField('Time Left:', timeLeft)
+					.addField('Dont worry, your not in trouble!', 'We just have these cooldowns set to make sure our API\'s / database dosent get spammed!')
+					.setColor('RED')
+			);
 		}
 	}
 
 	timestamps.set(message.author.id, now);
 	setTimeout(() => timestamps.delete(message.author.id), cooldownAmount);
-}
+
 	try {
 		command.execute(client, message, args);
 	} catch (error) {
@@ -135,6 +141,39 @@ client.on('message', message => {
 		message.reply('there was an error trying to execute that command!');
 	}
 });
+
+client.on('message', message => {
+	xp(message)
+	if (message.author.bot) return;
+	var user = message.mentions.users.first() || message.author;
+	var level = db.fetch(`guild_${message.guild.id}_level_${user.id}`) || 0;
+	var currentxp = db.fetch(`guild_${message.guild.id}_xp_${user.id}`) || 0;
+	var xpneeded = level * 500
+
+	function xp(message) {
+		if (message.author.bot) return
+		const randomNumber = Math.floor(Math.random() * 100) + 150
+		db.add(`guild_${message.guild.id}_user_${message.author.id}_xp_`, randomNumber)
+		db.add(`guild_${message.guild.id}_user_${message.author.id}_xptotal_`, randomNumber)
+		console.log(`Added ${randomNumber} XP to ${message.author.tag}'s account!`)
+		var level = db.get(`guild_${message.guild.id}_level_${message.author.id}`) || 0
+		var xp = db.get(`guild_${message.guild.id}_user_${message.author.id}_${randomNumber}_`)
+		var xpNeeded = level * 500;
+		if (xpNeeded < xp) {
+			var newLevel = db.add(`guild_${message.guild.id}_level_${message.author.id}`, 1)
+			db.subtract(`guild_${message.guild.id}_user_${message.author.id}_xp_`, xpNeeded)
+			message.channel.send(
+				new Discord.MessageEmbed()
+					.setTitle(`Level Up 🎉`)
+					.setDescription(`Congrats ${message.author}`)
+					.addField('New level:', newLevel)
+					.addField('XP till the next level:', xpNeeded)
+					.setColor('GREEN')
+			)
+		}
+	}
+
+})
 
 client.login(token);
 
