@@ -6,6 +6,7 @@ module.exports = {
     aliases: ['cf', 'flip', '50/50', 'coinflip'],
 	cooldown: 3,
 	usage: 'coin-flip',
+  category: 'Fun',
 	execute(client, message) {
         const n = Math.floor(Math.random() * 2);
         let result;

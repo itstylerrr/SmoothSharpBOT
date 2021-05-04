@@ -7,15 +7,26 @@ module.exports = {
 	aliases: ['commands', 'h'],
 	usage: '[command name]',
 	cooldown: 5,
+	category: 'Utility',
 	execute(client, message, args) {
 		const data = [];
 		const { commands } = message.client;
+
+		const devonly = message.client.commands.filter(x => x.category == 'Developer-Only').map((x) => '`' + x.name + '`').join(', ');
+		const fun = message.client.commands.filter(x => x.category == 'Fun').map((x) => '`' + x.name + '`').join(', ');
+		const moderation = message.client.commands.filter(x => x.category == 'Moderation').map((x) => '`' + x.name + '`').join(', ');
+		const testing = message.client.commands.filter(x => x.category == 'Testing').map((x) => '`' + x.name + '`').join(', ');
+		const utility = message.client.commands.filter(x => x.category == 'Utility').map((x) => '`' + x.name + '`').join(', ');
+		const xp = message.client.commands.filter(x => x.category == 'XP').map((x) => '`' + x.name + '`').join(', ');
 
 		if (!args.length) {
 			data.push(
 				new Discord.MessageEmbed()
 				.setTitle('SmoothSharp Help')
-				.addField('Commands', commands.map(command => command.name).join(', '))
+				.addField(`Moderation Commands:`, moderation)
+				.addField(`Utility Commands:`, utility)
+				.addField(`Fun Commands:`, fun)
+				.addField(`XP Commands:`, xp)
 				.addField(`You can send \`${prefix}help <command name>\` to get extra info on a specific command!`, `This only works in server, you will be left on delivered if you do it here ;)`)
 				.setFooter(`SmoothSharp Commands -- Command ran by ${message.author.tag}`)
 				.setTimestamp()
@@ -53,6 +64,7 @@ module.exports = {
 		.setTitle('Command Information')
 		.addField('Command Name:', command.name)
 		.addField('Command Aliases:', command.aliases)
+		.addField('Command Category:'. command.category)
 		.addField('Command Description:', command.description)
 		.addField('Command Usage:', command.usage)
 		.setFooter(`SmoothSharp's ${prefix}${command.name} command information -- Command ran by ${message.author.tag}`)

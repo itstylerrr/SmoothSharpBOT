@@ -7,6 +7,7 @@ module.exports = {
   usage: 'testdb',
   aliases: ['tdb', 'testdatabase', 'quick.db'],
   cooldown: '10',
+  category: 'Developer-Only',
   execute(client, message) {
     if (!message.author.id != developers) {
         return

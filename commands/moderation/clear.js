@@ -7,6 +7,7 @@ module.exports = {
     aliases: ['c', 'delete', 'remove', 'rm', 'prune'],
 	usage: 'clear <ammount>',
 	permissions: 'ADMINISTRATOR',
+	category: 'Moderation',
 	async execute(client, message, args) {
 
         if (message.member.hasPermission('ADMINSTRATOR')) {

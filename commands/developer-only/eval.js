@@ -9,6 +9,7 @@ module.exports = {
   aliases: ['ev', 'evaluate', 'console.log'],
   cooldown: '30',
   args: true,
+  category: 'Developer-Only',
   execute(client, message, args) {
     const input = args.join(' ');
     if (!input) return this.sendErrorMessage(message, 0, 'Please provide code to eval');

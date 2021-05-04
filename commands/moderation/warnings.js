@@ -7,6 +7,7 @@ module.exports = {
   cooldown: '5',
   args: true,
   usage: 'warnings <user>',
+  category: 'Moderation',
   async execute(client, message, args) {
     const user = message.mentions.members.first() || message.author
 

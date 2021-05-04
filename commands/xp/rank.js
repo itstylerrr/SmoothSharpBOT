@@ -8,11 +8,12 @@ module.exports = {
     aliases: ['points', 'xp', 'level'],
 	cooldown: 5,
 	usage: 'rank <@user (not needed)>',
+    category: 'XP',
 	execute(client, message) {
         if(message.author.bot) return;
         var user = message.mentions.users.first() || message.author;
         var level = db.fetch(`guild_${message.guild.id}_level_${user.id}`) || 0;
-        var currentxp = db.fetch(`guild_${message.guild.id}_user_${user.id}_xptotal_`) || 0;
+        var currentxp = db.fetch(`guild_${message.guild.id}_xp_${user.id}`) || 0;
         var xpneeded = level * 500
     
         // const lvlEmbed = new Discord.MessageEmbed()
@@ -26,7 +27,7 @@ module.exports = {
 
         const rankcard = new Canvacord.Rank()
         .setAvatar(user.displayAvatarURL({format: 'png', dynamic: true}))
-        .setCurrentXP(db.fetch(`guild_${message.guild.id}_user_${user.id}_xp_`) || 0)
+        .setCurrentXP(db.fetch(`guild_${message.guild.id}_xp_${user.id}`) || 0)
         .setRequiredXP(xpneeded)
         .setStatus(user.presence.status)
         .setLevel(db.fetch(`guild_${message.guild.id}_level_${user.id}`) || 0)

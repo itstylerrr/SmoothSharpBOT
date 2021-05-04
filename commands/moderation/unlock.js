@@ -7,6 +7,7 @@ module.exports = {
   cooldown: '3',
   args: true,
   usage: 'unlock <channel/role>',
+  category: 'Moderation',
   async execute(client, message, args) {
   
   const mentionedRole = message.mentions.roles.first() || message.mentions.roles.first();

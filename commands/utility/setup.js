@@ -3,6 +3,7 @@ module.exports = {
 	description: 'Sets up a mod channel for the bot to send logs to. (paired with the mod-channel command)',
 	usage: 'setup',
 	permissions: 'ADMINISTRATOR',
+	category: 'Utility',
 	execute(client, message) {
 		message.channel.send('🚧UNDER CONSTRUCTION🚧');
 	},

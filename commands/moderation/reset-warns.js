@@ -7,6 +7,7 @@ module.exports = {
   aliases: ['rw', 'reset-w', 'warn-reset'],
 	cooldown: 5,
   usage: 'reset-warns <user>',
+  category: 'Moderation',
     async execute(client, message, args) {
         const memberMention = message.guild.member(message.mentions.users.first())
         if(!message.member.hasPermission("MANAGE_MESSAGES")) {

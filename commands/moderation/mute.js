@@ -7,6 +7,7 @@ module.exports = {
   cooldown: '3',
   args: true,
   usage: 'mute <user>',
+  category: 'Moderation',
   async execute(client, message, args) {
   
   const modchannel = message.mentions.channels.first()
@@ -147,7 +148,7 @@ module.exports = {
     }
 
   //Find the log channel in the configuration and send the embed.
-    modChannel.send(successMessage).catch(err => {
+    modChannel.send(sucessMessage).catch(err => {
       return;
     })
   //Set the timeout of the mute using the muteTime and create a function inside the setTimeout function to do some stuff.

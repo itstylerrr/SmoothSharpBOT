@@ -7,6 +7,7 @@ module.exports = {
   cooldown: '2',
   args: true,
   usage: 'unmute <user>',
+  category: 'Moderation',
   async execute(client, message, args) {
     const modchannel = message.mentions.channels.first()
     let modChannelID = await db.fetch(`modchannel_${message.guild.id}`)

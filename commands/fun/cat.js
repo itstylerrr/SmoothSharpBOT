@@ -8,6 +8,7 @@ module.exports = {
     aliases: ['cat', 'cat-pic', '🐱'],
     cooldown: 3,
     usage: 'cat',
+    category: 'Fun',
     async execute(client, message) {
         const apiKey = catApi;
         const res = await fetch('https://api.thecatapi.com/v1/images/search', { headers: { 'x-api-key': apiKey }});

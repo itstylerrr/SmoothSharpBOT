@@ -7,6 +7,7 @@ module.exports = {
     aliases: ['birdy', 'bird-pic', '🐦'],
     cooldown: 3,
     usage: 'bird',
+    category: 'Fun',
     async execute(client, message) {
         const res = await fetch('http://shibe.online/api/birds');
         const img = (await res.json())[0];

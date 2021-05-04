@@ -7,6 +7,7 @@ module.exports = {
   cooldown: 5,
   args: true,
   usage: 'warn <user> <reason>',
+  category: 'Moderation',
   async execute(client, message, args) {
   const memberMention = message.guild.member(message.mentions.users.first())
    if(!message.member.hasPermission("MANAGE_MESSAGES")) {
@@ -86,7 +87,7 @@ module.exports = {
           return message.channel.send(`Oops! Seems like you didn't set a moderation channel where are logs go! Do ${prefix}mod-channel to set your log channel! If you need help do ${prefix}help`)
         }
 
-        modChannel.send(successMessage).catch(err => {
+        modChannel.send(sucessMessage).catch(err => {
           return;
         })
   }

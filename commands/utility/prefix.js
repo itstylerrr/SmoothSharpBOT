@@ -7,6 +7,7 @@ module.exports = {
   usage: 'prefix',
   aliases: ['pre'],
   cooldown: '5',
+  category: 'Utility',
   execute(client, message) {
 
 	let psprefix = db.get(`prefix_${message.guild.id}`)

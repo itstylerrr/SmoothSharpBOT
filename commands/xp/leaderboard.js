@@ -7,6 +7,7 @@ module.exports = {
     aliases: ['lb', 'leaders', 'mostxp', 'leaders', 'lboard', 'leaderb'],
 	cooldown: 5,
 	usage: 'leaderboard',
+    category: 'XP',
 	execute(client, message) {
         let xp = db.fetch(`guild_${message.guild.id}_xp_${user.id}`, { sort: '.data'}) || 0;
 

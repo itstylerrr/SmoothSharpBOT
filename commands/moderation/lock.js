@@ -7,6 +7,7 @@ module.exports = {
   cooldown: '10',
   usage: 'lock <channel/role>',
   args: true,
+  category: 'Moderation',
   async execute(client, message, args) {
   
   const mentionedRole = message.mentions.roles.first() || message.mentions.roles.first();
@@ -17,7 +18,7 @@ module.exports = {
 
   if (!client.lockit) client.lockit = [];
     if (!message.member.hasPermission('MANAGE_CHANNELS')) return message.channel.send('You cannot use this command!');
-    if(!args[0] || !args[1]) return message.channel.send('You did not mention a valid channel and or a valid role');
+    if(!args[1]) return message.channel.send('You did not mention a valid channel and or a valid role');
 
 
   let role = mentionedRole 

@@ -8,6 +8,7 @@ module.exports = {
   cooldown: '5',
   args: true,
   usage: 'mod-channel <channel>',
+  category: 'Moderation',
   execute(client, message, args) {
     const modchannel = message.mentions.channels.first()
       if (!modchannel) {

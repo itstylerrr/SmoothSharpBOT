@@ -7,6 +7,7 @@ module.exports = {
 	cooldown: 5,
 	usage: 'emojify <message>',
     args: true,
+    category: 'Fun',
 	execute(client, message, args) {
         const numberMap = {
             '0': ':zero:',

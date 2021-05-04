@@ -9,6 +9,8 @@ module.exports = {
 	description: 'Sets up a custom prefix for your server.',
 	usage: 'setprefix <PREFIX>',
     cooldown:'60',
+    category: 'Utility',
+    permissions: "ADMINISTRATOR",
 	async execute(client, message, args) {
         const psprefix = db.get(`prefix_${message.guild.id}`)
 		if(!message.member.hasPermission('ADMINISTRATOR')) {

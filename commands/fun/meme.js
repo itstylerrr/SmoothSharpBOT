@@ -6,6 +6,7 @@ module.exports = {
     description: 'Shows a random meme from the memes, dankmemes, or me_irl subreddits.',
     cooldown: 5,
     usage: 'meme',
+    category: 'Fun',
     async execute(client, message, async) {
         let res = await fetch('https://meme-api.herokuapp.com/gimme');
         res = await res.json();

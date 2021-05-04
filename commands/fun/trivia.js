@@ -12,6 +12,7 @@
 // 	cooldown: 15,
 // 	usage: 'trivia <topic>',
 //     args: true,
+    // category: 'Fun',
 // 	execute(client, message, args) {
 //     let psprefix = db.get(`prefix_${message.guild.id}`)
 //     if(psprefix === null) psprefix = prefix

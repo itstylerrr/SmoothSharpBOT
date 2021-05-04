@@ -10,6 +10,7 @@
 //     aliases: ['triviatopics', 'categories', 'ts'],
 //     cooldown: 5,
 //     usage: 'topics',
+//     category: 'Fun',
 //     execute(client, message) {
 //         let psprefix = db.get(`prefix_${message.guild.id}`)
 //         if (psprefix === null) psprefix = prefix
