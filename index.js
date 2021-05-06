@@ -141,39 +141,22 @@ client.on('message', message => {
 		message.reply('there was an error trying to execute that command!');
 	}
 });
+client.on("message", async (message) => {
+    if (!message.guild || message.author.bot) return;
+    xp(message);
+});
 
-// client.on('message', message => {
-// 	xp(message)
-// 	if (message.author.bot) return;
-// 	var user = message.mentions.users.first() || message.author;
-// 	var level = db.fetch(`guild_${message.guild.id}_level_${user.id}`) || 0;
-// 	var currentxp = db.fetch(`guild_${message.guild.id}_xp_${user.id}`) || 0;
-// 	var xpneeded = level * 500
-
-// 	function xp(message) {
-// 		if (message.author.bot) return
-// 		const randomNumber = Math.floor(Math.random() * 100) + 150
-// 		db.add(`guild_${message.guild.id}_user_${message.author.id}_xp_`, randomNumber)
-// 		db.add(`guild_${message.guild.id}_user_${message.author.id}_xptotal_`, randomNumber)
-// 		console.log(`Added ${randomNumber} XP to ${message.author.tag}'s account!`)
-// 		var level = db.get(`guild_${message.guild.id}_level_${message.author.id}`) || 0
-// 		var xp = db.get(`guild_${message.guild.id}_user_${message.author.id}_${randomNumber}_`)
-// 		var xpNeeded = level * 500;
-// 		if (xpNeeded < xp) {
-// 			var newLevel = db.add(`guild_${message.guild.id}_level_${message.author.id}`, 1)
-// 			db.subtract(`guild_${message.guild.id}_user_${message.author.id}_xp_`, xpNeeded)
-// 			message.channel.send(
-// 				new Discord.MessageEmbed()
-// 					.setTitle(`Level Up 🎉`)
-// 					.setDescription(`Congrats ${message.author}`)
-// 					.addField('New level:', newLevel)
-// 					.addField('XP till the next level:', xpNeeded)
-// 					.setColor('GREEN')
-// 			)
-// 		}
-// 	}
-
-// })
+function xp(message) {
+		const randomXP = Math.floor(Math.random() * 10) + 15
+        let xp = db.add(`xp_${message.author.id}`, randomXP);
+		console.log(`Added ${randomXP}XP to ${message.author.tag}'s account succesfully!`)
+        let level = Math.floor(0.3 * Math.sqrt(xp));
+        let lvl = db.get(`level_${message.author.id}`) || db.set(`level_${message.author.id}`,1);;
+        if (level > lvl) {
+            let newLevel = db.set(`level_${message.author.id}`,level);
+            message.channel.send(`:tada: ${message.author.toString()}, You just advanced to level ${newLevel}!`);
+        }
+}
 
 client.login(token);
 
