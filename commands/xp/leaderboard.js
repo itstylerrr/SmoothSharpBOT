@@ -1,4 +1,3 @@
-const data = require('canvacord/src/Plugins');
 const Discord = require('discord.js')
 const db = require('quick.db')
 
@@ -33,7 +32,7 @@ module.exports = {
         };
 
         const embed = new Discord.MessageEmbed()
-            .setTitle(`👑 ${message.guild.name}'s Leaderboard`)
+            .setTitle(`👑 SmoothSharp's Global Leaderboard`)
             .setColor(message.guild.me.displayHexColor)
         lb.forEach(d => {
             embed.addField(`${d.rank}. ${d.user.tag}`, `**Level** - ${d.level}\n**XP** - ${d.xp} / ${d.xpreq}`);

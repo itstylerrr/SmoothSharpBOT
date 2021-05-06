@@ -18,6 +18,8 @@ module.exports = {
 		const testing = message.client.commands.filter(x => x.category == 'Testing').map((x) => '`' + x.name + '`').join(', ');
 		const utility = message.client.commands.filter(x => x.category == 'Utility').map((x) => '`' + x.name + '`').join(', ');
 		const xp = message.client.commands.filter(x => x.category == 'XP').map((x) => '`' + x.name + '`').join(', ');
+		const info = message.client.commands.filter(x => x.category == 'Info').map((x) => '`' + x.name + '`').join(', ');
+		const music = message.client.commands.filter(x => x.category == 'Music').map((x) => '`' + x.name + '`').join(', ');
 
 		if (!args.length) {
 			data.push(
@@ -25,7 +27,9 @@ module.exports = {
 				.setTitle('SmoothSharp Help')
 				.addField(`Moderation Commands:`, moderation)
 				.addField(`Utility Commands:`, utility)
+				.addField(`Information Commands:`, info)
 				.addField(`Fun Commands:`, fun)
+				.addField(`Music Commands:`, music)
 				.addField(`XP Commands:`, xp)
 				.addField(`You can send \`${prefix}help <command name>\` to get extra info on a specific command!`, `This only works in server, you will be left on delivered if you do it here ;)`)
 				.setFooter(`SmoothSharp Commands -- Command ran by ${message.author.tag}`)

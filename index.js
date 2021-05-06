@@ -62,10 +62,39 @@ client.on('ready', () => {
 
 client.on('guildDelete', guild => {
 	status();
+
+	const guildDel = new Discord.MessageEmbed()
+    .setAuthor(`@SmoothSharp has left ${guild.name} 🚫`, servericon)
+    .setColor("#65db7b")
+    .setTimestamp();
+    let mainguild = client.guilds.cache.get('833891047099596810');
+    if (mainguild) {
+        channel = mainguild.channels.cache.get('836414217108193312');
+        if (channel) {
+            channel.send(guildDel)
+        }
+    }
+
 });
 
 client.on('guildCreate', guild => {
 	status();
+
+	let servericon = guild.iconURL();
+    const guildAdd = new Discord.MessageEmbed()
+        .setAuthor(`@SmoothSharp has joined ${guild.name} ✅`, servericon)
+        .addField(`Total Members`, `**${client.guilds.cache.reduce((x, guild) => x + guild.memberCount, 0)}** members!`)
+        .setColor("#65db7b")
+        .setTimestamp();
+
+    let mainguild = client.guilds.cache.get('833891047099596810');
+    if (mainguild) {
+        channel = mainguild.channels.cache.get('836414217108193312');
+        if (channel) {
+            channel.send(guildAdd)
+        }
+    }
+
 });
 
 client.on('message', message => {
