@@ -168,6 +168,12 @@ client.on('message', message => {
 	} catch (error) {
 		console.error(error);
 		message.reply('there was an error trying to execute that command!');
+		const errEmbed = new Discord.MessageEmbed()
+		.setTitle('Developer Info')
+		.setDescription(`If you are not a SmoothSharp developer you can ignore this message, but if you would like to help please copy the error and type: \`${psprefix}bug-report <error here>\`!`)
+		.addField('Error:', `\`${error}\``)
+		.setColor('RED')
+		message.channel.send(errEmbed)
 	}
 });
 client.on("message", async (message) => {

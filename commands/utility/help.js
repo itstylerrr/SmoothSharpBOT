@@ -15,7 +15,7 @@ module.exports = {
 		const devonly = message.client.commands.filter(x => x.category == 'Developer-Only').map((x) => '`' + x.name + '`').join(', ');
 		const fun = message.client.commands.filter(x => x.category == 'Fun').map((x) => '`' + x.name + '`').join(', ');
 		const moderation = message.client.commands.filter(x => x.category == 'Moderation').map((x) => '`' + x.name + '`').join(', ');
-		const misc  = message.client.commands.filter(x => x.category == 'Miscellaneous ').map((x) => '`' + x.name + '`').join(', ');
+		const misc  = message.client.commands.filter(x => x.category == 'Miscellaneous').map((x) => '`' + x.name + '`').join(', ');
 		const utility = message.client.commands.filter(x => x.category == 'Utility').map((x) => '`' + x.name + '`').join(', ');
 		const xp = message.client.commands.filter(x => x.category == 'XP').map((x) => '`' + x.name + '`').join(', ');
 		const info = message.client.commands.filter(x => x.category == 'Info').map((x) => '`' + x.name + '`').join(', ');
