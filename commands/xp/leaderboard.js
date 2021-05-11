@@ -35,7 +35,7 @@ module.exports = {
             .setTitle(`👑 SmoothSharp's Global Leaderboard`)
             .setColor(message.guild.me.displayHexColor)
         lb.forEach(d => {
-            embed.addField(`${d.rank}. ${d.user.tag}`, `**Level** - ${d.level}\n**XP** - ${d.xp} / ${d.xpreq}`);
+            embed.addField(`Rank ${d.rank}:`, `<@${d.user.id}> is Level - **${d.level}**\nXP - **${d.xp} / ${d.xpreq}**\n`);
         });
         embed.setFooter(`Your Position: ${myrank}`);
         return message.channel.send(embed);

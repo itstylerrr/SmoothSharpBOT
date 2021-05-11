@@ -184,7 +184,6 @@ client.on("message", async (message) => {
 function xp(message) {
 		const randomXP = Math.floor(Math.random() * 10) + 15
         let xp = db.add(`xp_${message.author.id}`, randomXP);
-		console.log(`Added ${randomXP}XP to ${message.author.tag}'s account succesfully!`)
         let level = Math.floor(0.3 * Math.sqrt(xp));
         let lvl = db.get(`level_${message.author.id}`) || db.set(`level_${message.author.id}`,1);;
         if (level > lvl) {

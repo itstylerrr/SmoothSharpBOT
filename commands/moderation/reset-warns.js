@@ -49,10 +49,6 @@ module.exports = {
         let modChannelID = await db.fetch(`modchannel_${message.guild.id}`)
         let modChannel = await client.channels.fetch(modChannelID)
 
-        if(!modChannel) {
-          return message.channel.send(`Oops! Seems like you didn't set a moderation channel where are logs go! Do ${prefix}mod-channel to set your log channel! If you need help do ${prefix}help`)
-        }
-
         modChannel.send(successMessage).catch(err => {
           return;
         })

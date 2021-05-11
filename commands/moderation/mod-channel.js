@@ -10,23 +10,26 @@ module.exports = {
   usage: 'mod-channel <channel>',
   category: 'Moderation',
   execute(client, message, args) {
-    const modchannel = message.mentions.channels.first()
-      if (!modchannel) {
-      return message.channel.send("Oops seems that you may have forgotten to send a valid channel!");
-    
-    }
-    let modchanneldb = db.set(`modchannel_${message.guild.id}`, `${modchannel.id}`)
-    
-    const successMessage = new Discord.MessageEmbed()
-    .setColor("#ff8c00")
-    .setTimestamp()
-    .setFooter(`Moderation Log channel changed by ${message.member.displayName}`)  
-    .setTitle("Moderation Log Channel Change")
-    .addField("**Moderation Channel**", `**Changed to ${modchannel}**`);
 
-    if(modchannel){
+    const modchannel = message.mentions.channels.first()
+    if (!modchannel) {
+      return message.channel.send("Oops seems that you may have forgotten to send a valid channel!");
+
+    }
+
+
+    let modchanneldb = db.set(`modchannel_${message.guild.id}_`, modchannel.id)
+
+    const successMessage = new Discord.MessageEmbed()
+      .setColor("#ff8c00")
+      .setTimestamp()
+      .setFooter(`Moderation Log channel changed by ${message.member.displayName}`)
+      .setTitle("Moderation Log Channel Change")
+      .addField("**Moderation Channel**", `**Changed to ${modchannel}**`);
+
+    if (modchannel) {
       message.channel.send(`Set the moderation channel to ${modchannel} successfully.`)
-      modchannel.send({embed: successMessage});
+      modchannel.send({ embed: successMessage });
     }
   }
 }
