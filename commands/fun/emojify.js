@@ -9,6 +9,7 @@ module.exports = {
     args: true,
     category: 'Fun',
 	execute(client, message, args) {
+    message.delete()
         const numberMap = {
             '0': ':zero:',
             '1': ':one:',
